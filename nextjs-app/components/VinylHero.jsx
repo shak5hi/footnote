@@ -81,10 +81,8 @@ export default function VinylHero() {
         const visW = visH * (window.innerWidth / window.innerHeight);
 
         // Map cover center from screen pixels to Three.js coordinates
-        const coverCenterX = coverRect.left + coverRect.width / 2;
         const coverCenterY = coverRect.top + coverRect.height / 2;
         
-        const coverX = (coverCenterX / window.innerWidth - 0.5) * visW;
         const coverY = -(coverCenterY / window.innerHeight - 0.5) * visH;
 
         // Convert cover dimensions and margins from screen pixels to Three.js units.
@@ -526,7 +524,7 @@ export default function VinylHero() {
         <div className={styles.essaysContainer}>
           <div className={`${styles.essaysHeader} ${styles.animFadeUp}`}>
             <span className={styles.essaysEyebrow}>FEATURED READING</span>
-            <h2 className={styles.essaysTitle}>"The article blues"</h2>
+            <h2 className={styles.essaysTitle}>&ldquo;The article blues&rdquo;</h2>
           </div>
           <div className={styles.essaysGrid}>
             
@@ -598,7 +596,7 @@ export default function VinylHero() {
               <div className={styles.essayContent}>
                 <span className={styles.essayTag}>AESTHETICS &middot; DESIGN</span>
                 <h3 className={styles.essayTitle}>Defining the modern minimum</h3>
-                <p className={styles.essayExcerpt}>Why stripping away the unnecessary isn't about having less, but making room for what truly matters.</p>
+                <p className={styles.essayExcerpt}>Why stripping away the unnecessary isn&apos;t about having less, but making room for what truly matters.</p>
               </div>
             </article>
 
@@ -612,7 +610,7 @@ export default function VinylHero() {
           <div className={`${styles.footerTop} ${styles.animFadeUp}`}>
             <div className={styles.footerLeft}>
               <div className={styles.footerWordmark}>FootNote</div>
-              <div className={styles.footerMotto}>"No ads. No algorithms. No noise."</div>
+              <div className={styles.footerMotto}>&ldquo;No ads. No algorithms. No noise.&rdquo;</div>
             </div>
             <div className={styles.footerRight}>
               <div className={styles.footerCol}>

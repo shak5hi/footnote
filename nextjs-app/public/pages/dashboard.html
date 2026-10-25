@@ -357,15 +357,16 @@
     // Fetch dynamic published articles and prepend to feed
     document.addEventListener("DOMContentLoaded", async () => {
       try {
-        const res = await fetch("http://localhost:5001/api/articles");
+        const res = await fetch("/api/articles");
         if (res.ok) {
           const articles = await res.json();
           const feedContainer = document.querySelector('.feed-container');
           
           let dynamicHtml = "";
           articles.forEach((article) => {
-            const coverImageHtml = article.coverImage ? 
-              `<div class="post-image"><img src="http://localhost:5001${article.coverImage}" alt="Cover" style="width:100%; object-fit:cover; border-radius:8px; margin-bottom:16px;"></div>` : "";
+            const coverImageSrc = article.coverImage ? (article.coverImage.startsWith('http') ? article.coverImage : article.coverImage) : "";
+            const coverImageHtml = coverImageSrc ? 
+              `<div class="post-image"><img src="${coverImageSrc}" alt="Cover" style="width:100%; object-fit:cover; border-radius:8px; margin-bottom:16px;"></div>` : "";
             
             const musicHtml = article.musicTrack ? 
               `<span style="font-size:10px; color:var(--text-ghost); margin-left:12px; text-transform:uppercase;">${article.musicTrack}</span>` : "";

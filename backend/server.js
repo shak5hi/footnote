@@ -52,10 +52,12 @@ setInterval(async () => {
   } catch (e) { /* silent */ }
 }, 60000);
 
-app.listen(5001, () => {
-    console.log("Server running on port 5001");
+const PORT = process.env.PORT || 5001;
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
     console.log("Loaded JWT_SECRET:", process.env.JWT_SECRET ? `Yes (length: ${process.env.JWT_SECRET.length})` : "No (undefined/missing)");
     console.log("Resolved .env path:", path.resolve(__dirname, ".env"));
-    console.log("Swagger docs available at: http://localhost:5001/api-docs");
+    console.log(`Swagger docs available at: http://localhost:${PORT}/api-docs`);
 });
 

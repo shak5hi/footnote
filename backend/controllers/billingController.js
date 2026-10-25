@@ -9,7 +9,7 @@ exports.createCheckoutSession = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    const clientUrl = process.env.CLIENT_URL || req.headers.origin || "http://localhost:5173";
+    const clientUrl = process.env.CLIENT_URL || req.headers.origin || "http://localhost:8080";
 
     // ── Mock Stripe Mode ──
     const stripeKey = process.env.STRIPE_SECRET_KEY || "";
@@ -66,7 +66,7 @@ exports.createPortalSession = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    const clientUrl = process.env.CLIENT_URL || req.headers.origin || "http://localhost:5173";
+    const clientUrl = process.env.CLIENT_URL || req.headers.origin || "http://localhost:8080";
 
     // ── Mock Stripe Mode ──
     const stripeKey = process.env.STRIPE_SECRET_KEY || "";

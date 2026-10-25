@@ -826,8 +826,8 @@
         if (token) headers["Authorization"] = `Bearer ${token}`;
 
         const apiUrl = editDraftId
-          ? `http://localhost:5001/api/articles/${editDraftId}`
-          : "http://localhost:5001/api/articles";
+          ? `/api/articles/${editDraftId}`
+          : "/api/articles";
         const reqMethod = editDraftId ? "PUT" : "POST";
 
         const response = await fetch(apiUrl, { method: reqMethod, headers, body: formData });
@@ -860,7 +860,7 @@
       try {
         const token = localStorage.getItem("token");
         if (token) {
-          const res = await fetch("http://localhost:5001/api/auth/me", {
+          const res = await fetch("/api/auth/me", {
             headers: { "Authorization": `Bearer ${token}` }
           });
           if (res.ok) {
@@ -880,7 +880,7 @@
         setStatus('Loading draft...', 'saving');
 
         try {
-          const res = await fetch(`http://localhost:5001/api/articles/${id}`);
+          const res = await fetch(`/api/articles/${id}`);
           if (res.ok) {
             const article = await res.json();
             document.getElementById('article-title').value = article.title || '';
@@ -921,7 +921,7 @@
             // Cover image
             if (article.coverImage) {
               const coverPreview = document.getElementById('cover-preview');
-              coverPreview.src = article.coverImage.startsWith('http') ? article.coverImage : `http://localhost:5001${article.coverImage}`;
+              coverPreview.src = article.coverImage.startsWith('http') ? article.coverImage : article.coverImage;
               if (article.coverImage.startsWith('http')) {
                 selectedAiCoverUrl = article.coverImage;
               }
@@ -1002,7 +1002,7 @@
         const blocksData = getBlocksData();
         const content = blocksData.map(b => b.content).filter(Boolean).join('\n\n');
 
-        const res = await fetch("http://localhost:5001/api/articles/cover-suggestions", {
+        const res = await fetch("/api/articles/cover-suggestions", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -1130,7 +1130,7 @@
 
       musicOptions.innerHTML = "<p style='font-size:12px; color:var(--text-ghost);'>Fetching AI recommendations...</p>";
       try {
-        const res = await fetch(`http://localhost:5001/api/articles/music-suggestions`, {
+        const res = await fetch(`/api/articles/music-suggestions`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -1259,7 +1259,7 @@
       aiWriteGenerateBtn.disabled = true;
 
       try {
-        const res = await fetch("http://localhost:5001/api/articles/generate", {
+        const res = await fetch("/api/articles/generate", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -1349,7 +1349,7 @@
         const headers = {};
         if (token) headers["Authorization"] = `Bearer ${token}`;
 
-        const apiUrl = editDraftId ? `http://localhost:5001/api/articles/${editDraftId}` : "http://localhost:5001/api/articles";
+        const apiUrl = editDraftId ? `/api/articles/${editDraftId}` : "/api/articles";
         const response = await fetch(apiUrl, { method: editDraftId ? 'PUT' : 'POST', headers, body: formData });
         const data = await response.json();
 
@@ -1415,8 +1415,8 @@
         if (token) headers["Authorization"] = `Bearer ${token}`;
 
         const apiUrl = editDraftId
-          ? `http://localhost:5001/api/articles/${editDraftId}`
-          : "http://localhost:5001/api/articles";
+          ? `/api/articles/${editDraftId}`
+          : "/api/articles";
 
         const response = await fetch(apiUrl, { method: editDraftId ? 'PUT' : 'POST', headers, body: formData });
         const data = await response.json();
@@ -1451,7 +1451,7 @@
       if (versionPanel.style.display === 'block') {
         versionList.innerHTML = '<p style="font-size:12px; color:var(--text-ghost);">Loading versions...</p>';
         try {
-          const res = await fetch(`http://localhost:5001/api/articles/${editDraftId}/versions`);
+          const res = await fetch(`/api/articles/${editDraftId}/versions`);
           const data = await res.json();
           if (data.versions && data.versions.length > 0) {
             versionList.innerHTML = '';
@@ -1475,7 +1475,7 @@
               btn.addEventListener('click', async () => {
                 if (!confirm('Restore this version? Current content will be saved as a new version.')) return;
                 try {
-                  const res = await fetch(`http://localhost:5001/api/articles/${editDraftId}/restore`, {
+                  const res = await fetch(`/api/articles/${editDraftId}/restore`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ versionIndex: parseInt(btn.dataset.idx) })

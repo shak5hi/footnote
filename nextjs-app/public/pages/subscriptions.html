@@ -221,7 +221,7 @@
       async function loadSubscriptions() {
         container.innerHTML = "<p style='color: var(--text-ghost); font-size: 13px; font-style: italic; margin-top: 16px;'>Loading subscriptions...</p>";
         try {
-          const res = await fetch("http://localhost:5001/api/auth/subscriptions", {
+          const res = await fetch("/api/auth/subscriptions", {
             headers: { "Authorization": `Bearer ${token}` }
           });
           

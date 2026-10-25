@@ -256,7 +256,7 @@
       // Determine initial subscription states if logged in
       if (token) {
         try {
-          const res = await fetch("http://localhost:5001/api/auth/subscriptions", {
+          const res = await fetch("/api/auth/subscriptions", {
              headers: { "Authorization": `Bearer ${token}` }
           });
           if (res.ok) {
@@ -302,7 +302,7 @@
 
             btn.textContent = "Saving...";
 
-            const res = await fetch("http://localhost:5001/api/auth/subscribe", {
+            const res = await fetch("/api/auth/subscribe", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",

@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const password = document.getElementById("reg-password").value;
 
     try {
-      const response = await fetch("http://localhost:5001/api/auth/signup", {
+      const response = await fetch("/api/auth/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
         msgEl.style.color = "inherit";
       }
 
-      const response = await fetch("http://localhost:5001/api/auth/login", {
+      const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

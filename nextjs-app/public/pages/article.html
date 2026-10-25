@@ -772,7 +772,7 @@
 
       if (articleId) {
         try {
-          const response = await fetch(`http://localhost:5001/api/articles/${articleId}`);
+          const response = await fetch(`/api/articles/${articleId}`);
           if (!response.ok) throw new Error("Failed to fetch article");
           const article = await response.json();
 
@@ -781,7 +781,7 @@
           
           if (article.coverImage) {
             const imgEl = document.getElementById('article-image');
-            imgEl.src = `http://localhost:5001${article.coverImage}`;
+            imgEl.src = article.coverImage.startsWith('http') ? article.coverImage : article.coverImage;
             imgEl.style.display = "block";
           }
 
@@ -1244,7 +1244,7 @@
       
       // Check status
       if (token) {
-        fetch("http://localhost:5001/api/auth/subscriptions", {
+        fetch("/api/auth/subscriptions", {
           headers: { "Authorization": `Bearer ${token}` }
         })
         .then(res => res.json())
@@ -1266,7 +1266,7 @@
 
         btnSub.textContent = "Saving...";
         try {
-          const res = await fetch("http://localhost:5001/api/auth/subscribe", {
+          const res = await fetch("/api/auth/subscribe", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -1300,7 +1300,7 @@
       const articleId = new URLSearchParams(window.location.search).get('id');
       if (articleId) {
         const timeSpentMs = Date.now() - readingStartTime;
-        fetch(`http://localhost:5001/api/articles/${articleId}/track-reading`, {
+        fetch(`/api/articles/${articleId}/track-reading`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ timeSpentMs }),
